@@ -1,0 +1,28 @@
+{
+  "name": "eyebrow",
+  "version": "1.0.0",
+  "description": "Minimalistic single-page web framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/http-server ./"
+  },
+  "keywords": [
+    "handlebars",
+    "mustache",
+    "template",
+    "templating",
+    "promise",
+    "angular",
+    "ember",
+    "minimal",
+    "minimalist",
+    "single-page",
+    "frontend",
+    "framework"
+  ],
+  "author": "Arthur Xavier <arthur.xavierx@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.8.5"
+  }
+}

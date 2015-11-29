@@ -1,0 +1,20 @@
+<button class="btn btn-primary" onclick="Brow('new_post')">New post</button>
+<br><br><br>
+
+{{#posts}}
+<article class="clearfix">
+  <header>
+    <div class="clearfix">
+      <h4 class="pull-left">{{title}}</h4>
+      <small class="pull-right">{{formatDate date}}</small>
+    </div>
+  </header>
+  <p><big>&ldquo;</big>{{text}}<big>&rdquo;</big></p>
+  <h5 class="pull-right"><a href="#/search/author/{{author}}">&mdash; {{author}}</a></h5>
+</article>
+<hr>
+{{/posts}}
+
+{{#unless posts}}
+<p><em>No post found.</em></p>
+{{/unless}}

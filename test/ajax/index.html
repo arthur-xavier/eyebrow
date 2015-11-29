@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Ajax</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js" type="text/javascript"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+  </head>
+
+  <body>
+    <header class="container" style="margin: 1.0em auto">
+      <div class="row">
+        <form class="col-xs-12">
+          <div class="input-group">
+            <input id="url" type="text" class="form-control" placeholder="URL..." />
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit" style="width: 100%">View Source</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <section role="main" class="container"></section>
+
+    <!-- Templates -->
+    <script id="data" type="text/handlebars">
+      <div class="row">
+        <div class="col-xs-12">
+          <pre>{{data}}</pre>
+        </div>
+      </div>
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../../eyebrow.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      Brow(function(store) {
+        Brow.template('data', Handlebars.compile($('#data').html()));
+
+        $('#url').val(location.hash.slice(2));
+        $('form').submit(function() {
+          event.preventDefault();
+          Brow($('#url').val());
+          return false;
+        });
+
+        Brow.route(/^\/(.+)/, function(store, url) {
+          var view = this;
+          $.get(url, function(data) {
+            view.data = data;
+            Brow.render('data');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
