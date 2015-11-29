@@ -1,0 +1,34 @@
+{
+  "name": "eyebrow",
+  "description": "Minimalistic JavaScript single-page web framework",
+  "main": "eyebrow.js",
+  "authors": [
+    "Arthur Xavier <arthur.xavierx@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "handlebars",
+    "mustache",
+    "template",
+    "templating",
+    "promise",
+    "angular",
+    "ember",
+    "minimal",
+    "minimalist",
+    "single-page",
+    "frontend",
+    "framework"
+  ],
+  "homepage": "https://github.com/arthur-xavier/eyebrow",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
