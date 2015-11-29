@@ -1,5 +1,5 @@
 /**
- * Eyebrow is a minimalistic single-page web framework
+ * Eyebrow is a minimalistic single-page web framework for JavaScript
  * So minimalistic it calls itself just Brow
  * So minimalistic it calls for use of basic traditional 
  HTML and JavaScript functionalities

@@ -1,7 +1,7 @@
 {
   "name": "eyebrow",
   "version": "1.0.0",
-  "description": "Minimalistic single-page web framework",
+  "description": "Minimalistic JavaScript single-page web framework",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/http-server ./"

@@ -1,2 +1,2 @@
 # Eyebrow ß
-> Minimalistic single-page web framework
+> Minimalistic JavaScript single-page web framework
