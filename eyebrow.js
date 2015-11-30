@@ -58,7 +58,7 @@
 
     // registered action
     if(!!actions[action]) {
-      store = actions[action].call(view, store, data) || store;
+      store = actions[action].call(actions[action], store, data) || store;
     // registered route
     } else {
       location.hash = "/" + action;
