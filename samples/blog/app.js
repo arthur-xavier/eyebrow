@@ -16,7 +16,7 @@
       }
     ];
 
-    Brow.route(/^\/about/, function() { Brow.render('about') });
+    Brow.route(/^\/about/, function() { Brow.render('about', '#main') });
 
     Brow.template('about', Handlebars.compile(document.getElementById('about').innerHTML));
     Brow.template('posts', Handlebars.compile(document.getElementById('posts').innerHTML));

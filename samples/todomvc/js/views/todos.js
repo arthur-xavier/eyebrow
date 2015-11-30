@@ -117,22 +117,43 @@
       });
     };
 
+    /** 
+     * Removes all completed todos from the list
+     * Called on click event of button#clear-completed
+     * @param  {Array} store
+     * @return {Array} new store with completed todos removed
+     */
+    this.clear_completed = this.clear_completed || function(store) {
+      return store.filter(function(todo) { return !todo.completed; });
+    };
+
 
     // setup render context
+    this.filter = filter;
     this.todos = store;
 
+    var active = store.filter(function(t) { return !t.completed; });
+    var completed = store.filter(function(t) { return t.completed; });
+
+    this.activeTodoCount = active.length;
+    this.activeTodoWord = (this.activeTodoCount == 1) ? "todo" : "todos";
+
+    this.completedTodos = completed.length > 0;
+
     // filter todos
-    if(filter === 'active') {
+    if(this.filter === 'active') {
       this.todos = this.todos.filter(function(t) { return !t.completed; });
-    } else if(filter === 'completed') {
+    } else if(this.filter === 'completed') {
       this.todos = this.todos.filter(function(t) { return t.completed; });
     }
 
-    // show/hide main section
+    // show/hide main section and footer
     document.getElementById('main').style.display = (this.todos.length > 0) ? 'inherit' : 'none';
+    document.getElementById('footer').style.display = (store.length > 0) ? 'inherit' : 'none';
 
     // render templates
-    Brow.render('todos', this, '#todo-list');
+    Brow.render('todos', '#todo-list');
+    Brow.render('footer', '#footer');
     
     // store data
     localStorage.setItem('todos-brow', JSON.stringify(store));

@@ -14,8 +14,7 @@
   var actions = {};
   var templates = {};
 
-  var views = [];
-  var $view = null;
+  var view = null;
 
   /**
    * Calls for an action within the Eyebrow context
@@ -32,35 +31,23 @@
    */
   var Brow = function(action, data) {
     // reload view
-    if(!action && views.length > 0) {
-      views.forEach(function(view) {
-        store = view.apply(view, [store].concat(params)) || store;
-      });
-      return;
+    if(!action && !!view) {
+      store = view.apply(view, [store].concat(params)) || store;
+    }
     // app initialisation
-    } else if(typeof action === 'function') {
+    else if(typeof action === 'function') {
       store = action.call(Brow, null, data);
-      return;
     }
-
     // view action
-    if(views.length > 0) {
-      //store = view[action].call(view, store, data) || store;
-      var actionFound = false;
-      views.forEach(function(view) {
-        if(!!view[action]) {
-          store = view[action].call(view, store, data) || store;
-          actionFound = true;
-        }
-      });
-      if(actionFound) return;
+    else if(!!view && !!view[action]) {
+      store = view[action].call(view, store, data) || store;
     }
-
     // registered action
-    if(!!actions[action]) {
-      store = actions[action].call(actions[action], store, data) || store;
+    else if(!!actions[action]) {
+      store = actions[action].call(view, store, data) || store;
+    }
     // registered route
-    } else {
+    else {
       location.hash = "/" + action;
     }
   };
@@ -109,32 +96,32 @@
    *
    * @param {string} name
    */
-  Brow.render = function(name, view, selector) {
+  Brow.render = function(name, selector, data) {
+    data = data || view;
     if(!!selector) {
       if(typeof selector === 'string') {
         document.querySelector(selector).innerHTML = templates[name](view);
+      } else if(selector.hasOwnProperty('innerHTML')) {
+        selector.innerHTML = templates[name](data);
       } else {
-        selector.innerHTML = templates[name](view);
+        throw new Error('Eyebrow: can\'t render, invalid selector or DOM element provided');
       }
     } else {
-      if(!$view) throw new Error('Eyebrow: can\'t render, no DOM element for view defined');
-      $view.innerHTML = templates[name](view);
+      throw new Error('Eyebrow: can\'t render, invalid selector or DOM element provided');
     }
   };
 
   
   function loadViewFromHash() {
     event.preventDefault();
-    // clear views
-    views = [];
     // find route
     routes.forEach(function(r) {
       var match = r.regexp.exec(location.hash.slice(1));
       // (route found)? ==> call view
       if(match !== null) {
-        views.push(r.view);
+        view = r.view;
         params = match.slice(1);
-        store = r.view.apply(r.view, [store].concat(params)) || store;
+        store = view.apply(view, [store].concat(params)) || store;
       }
     });
   }
@@ -142,9 +129,6 @@
   window.addEventListener('load', loadViewFromHash);
   window.addEventListener('hashchange', loadViewFromHash);
 
-
-  // initialize Eyebrow view rendering section
-  $view = document.querySelector('[role="main"]');
 
   window.Brow = Brow;
 

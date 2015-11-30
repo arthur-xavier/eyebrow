@@ -3,7 +3,7 @@
 
   var posts = function(store) {
     this.posts = store;
-    Brow.render('posts');
+    Brow.render('posts', '#main');
   };
 
   Brow.route(/^\/?$/, posts);

@@ -19,7 +19,7 @@
       throw err;
     }
 
-    Brow.render('posts');
+    Brow.render('posts', '#main');
   };
 
   document.searchForm.onsubmit = function() {

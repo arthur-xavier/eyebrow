@@ -21,7 +21,7 @@
       return store;
     };
 
-    Brow.render('new_post');
+    Brow.render('new_post', '#main');
   };
 
   Brow.route(/^\/new_post/, new_post);
