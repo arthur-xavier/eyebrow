@@ -31,7 +31,7 @@
     this.completedTodos = completed.length > 0;
 
     // show/hide footer
-    Brow.$('#footer').style.display = (store.length > 0) ? 'inherit' : 'none';
+    document.getElementById('footer').style.display = (store.length > 0) ? 'inherit' : 'none';
 
     // render templates
     Brow.render('footer', this, '#footer');

@@ -39,9 +39,9 @@
      * @param {string} id
      */
     this.edit = this.edit || function(store, id) {
-      var item = Brow.$('[data-id="' + id + '"');
+      var item = document.querySelector('[data-id="' + id + '"');
       item.className += ' editing';
-      Brow.$('.edit', item).focus();
+      item.querySelector('.edit').focus();
     };
 
     /**
@@ -129,7 +129,7 @@
     }
 
     // show/hide main section
-    Brow.$('#main').style.display = (this.todos.length > 0) ? 'inherit' : 'none';
+    document.getElementById('main').style.display = (this.todos.length > 0) ? 'inherit' : 'none';
 
     // render templates
     Brow.render('todos', this, '#todo-list');

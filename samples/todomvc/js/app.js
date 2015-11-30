@@ -13,8 +13,8 @@
     Brow.route(/^\/(\w+)?$/, FooterView);
 
     // setup templates
-    Brow.template('todos', Handlebars.compile(Brow.$('#todos-template').innerHTML));
-    Brow.template('footer', Handlebars.compile(Brow.$('#footer-template').innerHTML));
+    Brow.template('todos', Handlebars.compile(document.getElementById('todos-template').innerHTML));
+    Brow.template('footer', Handlebars.compile(document.getElementById('footer-template').innerHTML));
 
     // load stored data on localStorage or create new
     return JSON.parse(localStorage.getItem('todos-brow')) || [];

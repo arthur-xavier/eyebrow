@@ -112,7 +112,7 @@
   Brow.render = function(name, view, selector) {
     if(!!selector) {
       if(typeof selector === 'string') {
-        Brow.$(selector).innerHTML = templates[name](view);
+        document.querySelector(selector).innerHTML = templates[name](view);
       } else {
         selector.innerHTML = templates[name](view);
       }
@@ -121,40 +121,6 @@
       $view.innerHTML = templates[name](view);
     }
   };
-
-  /**
-   * Scoped querySelector
-   * @param  {string}     selector
-   * @param  {DOMElement} scope
-   * @return {Node}
-   */
-  Brow.$ = function(selector, scope) {
-    return (scope || document).querySelector(selector);
-  };
-
-  /**
-   * Scoped querySelectorAll
-   * @param  {string}     selector
-   * @param  {DOMElement} scope
-   * @return {NodeList}
-   */
-  Brow.$all = function(selector, scope) {
-    return (scope || document).querySelectorAll(selector);
-  };
-
-  /**
-   * Adds an event listener to an event on target element
-   * @param  {DOMElement} target
-   * @param  {string}     type       Event type
-   * @param  {function}   callback
-   * @param  {boolean}    useCapture
-   */
-  Brow.$on = function(target, type, callback, useCapture) {
-    target.addEventListener(type, callback, !!useCapture);
-  };
-  
-  // make NodeList iterable using Array's forEach
-  NodeList.prototype.forEach = Array.prototype.forEach;
 
   
   function loadViewFromHash() {
@@ -173,8 +139,8 @@
     });
   }
   // loads view from hash on page load and on hash change
-  Brow.$on(window, 'load', loadViewFromHash);
-  Brow.$on(window, 'hashchange', loadViewFromHash);
+  window.addEventListener('load', loadViewFromHash);
+  window.addEventListener('hashchange', loadViewFromHash);
 
 
   // initialize Eyebrow view rendering section

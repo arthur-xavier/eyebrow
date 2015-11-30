@@ -34,6 +34,4 @@ When calling Brow with both parameters, there occur 4 different cases:
 
 ### Routing
 
-### Query Selector and miscellaneous
-
 ## TODO
