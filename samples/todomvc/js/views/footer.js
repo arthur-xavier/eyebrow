@@ -14,8 +14,8 @@
      * @param  {Array} store
      * @return {Array} new store with completed todos removed
      */
-    this.clear_completed = function(store) {
-      return store.filter(function(t) { return !t.completed; });
+    this.clear_completed = this.clear_completed || function(store) {
+      return store.filter(function(todo) { return !todo.completed; });
     };
 
 

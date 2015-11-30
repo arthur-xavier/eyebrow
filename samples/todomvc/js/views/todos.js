@@ -16,7 +16,7 @@
      * Called on keyup event of input#new-todo
      * @param {Array} store
      */
-    this.create = function(store) {
+    this.create = this.create || function(store) {
       var $input = event.target;
       var val = $input.value.trim();
 
@@ -30,8 +30,6 @@
         completed: false
       });
       $input.value = "";
-
-      Brow();
     };
 
     /**
@@ -40,7 +38,7 @@
      * @param {Array}  store
      * @param {string} id
      */
-    this.edit = function(store, id) {
+    this.edit = this.edit || function(store, id) {
       var item = Brow.$('[data-id="' + id + '"');
       item.className += ' editing';
       Brow.$('.edit', item).focus();
@@ -52,7 +50,7 @@
      * If Enter key is pressed, update the todo
      * Called on keyup event of input.edit
      */
-    this.keyup = function() {
+    this.keyup = this.keyup || function() {
       var $input = event.target;
 
       if(event.which === KEY_ENTER) {
@@ -70,7 +68,7 @@
      * @param {Array}  store
      * @param {string} id
      */
-    this.update = function(store, id) {
+    this.update = this.update || function(store, id) {
       var $input = event.target;
       var val = $input.value;
 
@@ -83,8 +81,6 @@
       } else {
         $input.dataset.abort = false;
       }
-
-      Brow();
     };
 
     /**
@@ -93,9 +89,8 @@
      * @param {Array}  store
      * @param {string} id
      */
-    this.destroy = function(store, id) {
-      store.splice(utils.findTodoIndexById(store, id), 1);
-      Brow();
+    this.destroy = this.destroy || function(store, id) {
+      return store.filter(function(todo) { return todo.id !== id; });
     };
 
     /**
@@ -103,9 +98,11 @@
      * @param {Array}  store
      * @param {string} id
      */
-    this.mark = function(store, id) {
-      store[utils.findTodoIndexById(store, id)].completed ^= true;
-      Brow();
+    this.mark = this.mark || function(store, id) {
+      return store.map(function(todo) {
+        if(todo.id === id) todo.completed ^= true;
+        return todo;
+      });
     };
 
     /**
@@ -113,9 +110,11 @@
      * Called on change event of input#toggle-all
      * @param {Array} store
      */
-    this.mark_all = function(store) {
-      store.forEach(function(t) { t.completed = event.target.checked; });
-      Brow();
+    this.mark_all = this.mark_all || function(store) {
+      return store.map(function(todo) {
+        todo.completed = event.target.checked;
+        return todo;
+      });
     };
 
 
@@ -133,7 +132,7 @@
     Brow.$('#main').style.display = (this.todos.length > 0) ? 'inherit' : 'none';
 
     // render templates
-    Brow.render('todos', this);
+    Brow.render('todos', this, '#todo-list');
     
     // store data
     localStorage.setItem('todos-brow', JSON.stringify(store));
