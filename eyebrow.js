@@ -8,13 +8,13 @@
   "use strict";
 
   var store = null;
-  var __data = null;
+  var params = null;
 
   var routes = [];
   var actions = {};
   var templates = {};
 
-  var view = null;
+  var views = [];
   var $view = null;
 
   /**
@@ -31,18 +31,33 @@
    * @param {object}          data
    */
   var Brow = function(action, data) {
-    __data = data || __data;
     // reload view
-    if(!action && !!view) {
-      store = view.call(view, store, __data) || store;
+    if(!action && views.length > 0) {
+      views.forEach(function(view) {
+        store = view.apply(view, [store].concat(params)) || store;
+      });
+      return;
     // app initialisation
     } else if(typeof action === 'function') {
       store = action.call(Brow, null, data);
+      return;
+    }
+
     // view action
-    } else if(!!view && !!view[action]) {
-      store = view[action].call(view, store, data) || store;
+    if(views.length > 0) {
+      //store = view[action].call(view, store, data) || store;
+      var actionFound = false;
+      views.forEach(function(view) {
+        if(!!view[action]) {
+          store = view[action].call(view, store, data) || store;
+          actionFound = true;
+        }
+      });
+      if(actionFound) return;
+    }
+
     // registered action
-    } else if(!!actions[action]) {
+    if(!!actions[action]) {
       store = actions[action].call(view, store, data) || store;
     // registered route
     } else {
@@ -94,7 +109,7 @@
    *
    * @param {string} name
    */
-  Brow.render = function(name, selector) {
+  Brow.render = function(name, view, selector) {
     if(!!selector) {
       if(typeof selector === 'string') {
         Brow.$(selector).innerHTML = templates[name](view);
@@ -144,14 +159,16 @@
   
   function loadViewFromHash() {
     event.preventDefault();
+    // clear views
+    views = [];
     // find route
     routes.forEach(function(r) {
       var match = r.regexp.exec(location.hash.slice(1));
       // (route found)? ==> call view
       if(match !== null) {
-        view = r.view;
-        store = view.apply(view, [store].concat(match.slice(1))) || store;
-        return false;
+        views.push(r.view);
+        params = match.slice(1);
+        store = r.view.apply(r.view, [store].concat(params)) || store;
       }
     });
   }

@@ -118,43 +118,22 @@
       Brow();
     };
 
-    /** 
-     * Removes all completed todos from the list
-     * Called on click event of button#clear-completed
-     * @param  {Array} store
-     * @return {Array} new store with completed todos removed
-     */
-    this.clear_completed = function(store) {
-      return store.filter(function(t) { return !t.completed; });
-    };
-
 
     // setup render context
-    this.filter = filter;
     this.todos = store;
 
-    var active = this.todos.filter(function(t) { return !t.completed; });
-    var completed = this.todos.filter(function(t) { return t.completed; });
-
-    this.activeTodoCount = active.length;
-    this.activeTodoWord = (this.activeTodoCount == 1) ? "todo" : "todos";
-
-    this.completedTodos = completed.length > 0;
-
     // filter todos
-    if(this.filter === 'active') {
-      this.todos = active;
-    } else if(this.filter === 'completed') {
-      this.todos = completed;
+    if(filter === 'active') {
+      this.todos = this.todos.filter(function(t) { return !t.completed; });
+    } else if(filter === 'completed') {
+      this.todos = this.todos.filter(function(t) { return t.completed; });
     }
 
-    // show/hide sections
+    // show/hide main section
     Brow.$('#main').style.display = (this.todos.length > 0) ? 'inherit' : 'none';
-    Brow.$('#footer').style.display = (store.length > 0) ? 'inherit' : 'none';
 
     // render templates
-    Brow.render('todos');
-    Brow.render('footer', '#footer');
+    Brow.render('todos', this);
     
     // store data
     localStorage.setItem('todos-brow', JSON.stringify(store));

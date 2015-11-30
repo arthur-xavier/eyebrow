@@ -8,7 +8,9 @@
   Brow(function() {
     // setup routes
     Brow.route(/^\/?$/, TodosView);
+    Brow.route(/^\/?$/, FooterView);
     Brow.route(/^\/(\w+)?$/, TodosView);
+    Brow.route(/^\/(\w+)?$/, FooterView);
 
     // setup templates
     Brow.template('todos', Handlebars.compile(Brow.$('#todos-template').innerHTML));

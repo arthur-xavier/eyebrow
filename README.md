@@ -16,20 +16,24 @@ bower install eyebrow
 
 You can then import Eyebrow to your page using [Browserify](https://www.npmjs.com/package/browserify) or a `<script>` tag.
 
-## Brow(action, data)
-The core of the framework is the `Brow` function.
-
-### Brow()
-When calling Brow with no arguments, it simply reloads and refreshes the current view.
+## Functions
 
 ### Brow(action, data)
+The core of the framework is the `Brow` function.
+
+#### Brow()
+When calling Brow with no arguments, it simply reloads and refreshes the current view.
+
+#### Brow(action, data)
 When calling Brow with both parameters, there occur 4 different cases:
 
-## Views
+### Views
 
 
-## Templating
+### Templating
 
-## Routing
+### Routing
 
-## Query Selector and miscellaneous
+### Query Selector and miscellaneous
+
+## TODO
