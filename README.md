@@ -1,7 +1,7 @@
 # Eyebrow
-> Minimalistic JavaScript single-page web framework
+> Minimalistic JavaScript single-page web library
 
-Eyebrow or just Brow is a minimal single-page web framework for front-end JavaScript inspired by Backbone and AngularJS. It is a simple View library which bundles together simple templating, view management, routing and data store in a very minimalistic way.
+Eyebrow or just Brow is a minimal single-page web library for front-end JavaScript inspired by Backbone and AngularJS. It is a simple View library which bundles together simple templating, view management, routing and data store in a very minimalistic way.
 
 ## Installation
 To install Eyebrow you can do it either via NPM or Bower.
@@ -19,7 +19,7 @@ You can then import Eyebrow to your page using [Browserify](https://www.npmjs.co
 ## Functions
 
 ### Brow(action, data)
-The core of the framework is the `Brow` function.
+The core of the library is the `Brow` function.
 
 #### Brow()
 When calling Brow with no arguments, it simply reloads and refreshes the current view.

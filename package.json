@@ -1,7 +1,7 @@
 {
   "name": "eyebrow",
   "version": "1.0.0",
-  "description": "Minimalistic JavaScript single-page web framework",
+  "description": "Minimalistic JavaScript single-page web library",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/http-server ./"
@@ -18,7 +18,7 @@
     "minimalist",
     "single-page",
     "frontend",
-    "framework"
+    "library"
   ],
   "author": "Arthur Xavier <arthur.xavierx@gmail.com>",
   "license": "MIT",

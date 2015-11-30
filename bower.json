@@ -1,6 +1,6 @@
 {
   "name": "eyebrow",
-  "description": "Minimalistic JavaScript single-page web framework",
+  "description": "Minimalistic JavaScript single-page web library",
   "main": "eyebrow.js",
   "authors": [
     "Arthur Xavier <arthur.xavierx@gmail.com>"
@@ -18,7 +18,7 @@
     "minimalist",
     "single-page",
     "frontend",
-    "framework"
+    "library"
   ],
   "homepage": "https://github.com/arthur-xavier/eyebrow",
   "moduleType": [
