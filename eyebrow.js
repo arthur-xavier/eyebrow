@@ -8,6 +8,7 @@
   "use strict";
 
   var store = null;
+  var __data = null;
 
   var routes = [];
   var actions = {};
@@ -30,9 +31,10 @@
    * @param {object}          data
    */
   var Brow = function(action, data) {
+    __data = data || __data;
     // reload view
     if(!action && !!view) {
-      store = view.call(view, store) || store;
+      store = view.call(view, store, __data) || store;
     // app initialisation
     } else if(typeof action === 'function') {
       store = action.call(Brow, null, data);
@@ -114,6 +116,7 @@
   Brow.$ = function(selector, scope) {
     return (scope || document).querySelector(selector);
   };
+
   /**
    * Scoped querySelectorAll
    * @param  {string}     selector
@@ -123,6 +126,7 @@
   Brow.$all = function(selector, scope) {
     return (scope || document).querySelectorAll(selector);
   };
+
   /**
    * Adds an event listener to an event on target element
    * @param  {DOMElement} target
@@ -133,6 +137,7 @@
   Brow.$on = function(target, type, callback, useCapture) {
     target.addEventListener(type, callback, !!useCapture);
   };
+  
   // make NodeList iterable using Array's forEach
   NodeList.prototype.forEach = Array.prototype.forEach;
 

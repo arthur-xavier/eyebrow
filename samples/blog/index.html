@@ -2,9 +2,10 @@
 
 <html>
   <head>
-    <title>Eyebrow • Blog</title>
-    
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Eyebrow • Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Bootstrap -->
@@ -15,7 +16,7 @@
 
     <script type="text/javascript">
       Handlebars.registerHelper('formatDate', function(date) {
-        return date.toLocaleString();
+        return (new Date(date)).toLocaleString();
       });
     </script>
   </head>
@@ -97,10 +98,6 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ullamcorper at mi sed pulvinar. Ut egestas sem porta, facilisis turpis ut, suscipit ante. Donec id auctor erat, a feugiat odio. Integer aliquet libero eget ante facilisis laoreet. Nullam in orci est. In interdum, erat eu congue ullamcorper, diam odio sollicitudin elit, eget tincidunt sem magna at leo. Donec pretium maximus orci at egestas. Morbi justo magna, sollicitudin quis augue ac, scelerisque laoreet libero. Morbi id sagittis erat. Maecenas laoreet dui sit amet turpis auctor tincidunt. Maecenas dignissim eget libero vel blandit. Donec pellentesque dignissim tempus.</p>
 
       <p>Morbi id pharetra diam. Nulla sollicitudin aliquam nisl ut imperdiet. Nunc laoreet efficitur erat, vel commodo elit imperdiet vel. Mauris consectetur pulvinar blandit. Fusce a tellus nec est porttitor luctus nec a diam. Integer fermentum gravida finibus. Nulla urna risus, scelerisque laoreet lacinia vitae, semper eget nisl. Duis sollicitudin semper maximus. Quisque a quam lacus. Praesent aliquet ornare dolor, a tempus justo feugiat id. Cras aliquam porttitor leo, eu lacinia mi. Donec non finibus mauris. Curabitur tempus erat quis cursus auctor.</p>
-
-      <p>Donec placerat egestas enim, eget porttitor quam. Integer condimentum sollicitudin ornare. Nulla fringilla magna et nulla tincidunt mattis. In efficitur hendrerit justo, id ullamcorper lectus vehicula nec. Maecenas vitae dictum velit, sit amet vestibulum erat. Nulla eget consectetur turpis. Aenean lobortis venenatis eros. Sed a posuere ante, in vehicula nulla. Cras ut fermentum leo. Integer aliquam ut turpis et sollicitudin. Pellentesque lobortis enim non mauris lacinia cursus. Proin id bibendum mauris, vel suscipit dolor. Aenean vel dolor aliquet, vestibulum tortor non, tincidunt diam. Aliquam sodales dui vel dolor feugiat, nec porttitor quam semper. Fusce scelerisque leo non varius feugiat.</p>
-
-      <p>Phasellus iaculis lacus eu enim vestibulum viverra. Vivamus placerat, ligula et porttitor sagittis, diam nulla suscipit urna, sit amet eleifend turpis lectus eu erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu turpis dictum, volutpat augue vel, suscipit augue. Mauris sodales mi a libero vulputate vestibulum. Pellentesque pretium neque quis mauris sollicitudin congue. Sed ornare ut mi ut luctus. Nulla luctus volutpat mi, at vulputate nulla hendrerit at. Vestibulum id ipsum nec lectus aliquet molestie id in arcu. Duis lacinia dui nec dui fringilla euismod.</p>
     </script>
 
     <!-- JavaScript -->

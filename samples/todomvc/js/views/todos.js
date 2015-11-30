@@ -76,7 +76,7 @@
 
       if($input.dataset.abort === 'false') {
         if(val) {
-          store[utils.findTodoIndexById(id)].title = val;
+          store[utils.findTodoIndexById(store, id)].title = val;
         } else {
           this.destroy(store, id);
         }
@@ -94,7 +94,7 @@
      * @param {string} id
      */
     this.destroy = function(store, id) {
-      store.splice(utils.findTodoIndexById(id), 1);
+      store.splice(utils.findTodoIndexById(store, id), 1);
       Brow();
     };
 
@@ -104,7 +104,7 @@
      * @param {string} id
      */
     this.mark = function(store, id) {
-      store[utils.findTodoIndexById(id)].completed ^= true;
+      store[utils.findTodoIndexById(store, id)].completed ^= true;
       Brow();
     };
 
@@ -130,7 +130,7 @@
 
 
     // setup render context
-    this.filter = filter || this.filter;
+    this.filter = filter;
     this.todos = store;
 
     var active = this.todos.filter(function(t) { return !t.completed; });

@@ -32,6 +32,7 @@
       <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
     </footer>
 
+    <!-- Templates -->
     <script id="todos-template" type="text/x-handlebars-template">
       {{#todos}}
       <li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
@@ -60,6 +61,7 @@
       {{#if completedTodos}}<button id="clear-completed" onclick="Brow('clear_completed');Brow()">Clear completed</button>{{/if}}
     </script>
 
+    <!-- scripts -->
     <script src="../../eyebrow.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/views/todos.js"></script>

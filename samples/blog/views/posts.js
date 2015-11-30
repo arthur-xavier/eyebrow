@@ -2,7 +2,7 @@
   "use strict";
 
   var posts = function(store) {
-    this.posts = store.posts;
+    this.posts = store;
     Brow.render('posts');
   };
 

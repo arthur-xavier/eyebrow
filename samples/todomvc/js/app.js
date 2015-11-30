@@ -6,10 +6,15 @@
   });
 
   Brow(function() {
+    // setup routes
     Brow.route(/^\/?$/, TodosView);
     Brow.route(/^\/(\w+)?$/, TodosView);
+
+    // setup templates
     Brow.template('todos', Handlebars.compile(Brow.$('#todos-template').innerHTML));
     Brow.template('footer', Handlebars.compile(Brow.$('#footer-template').innerHTML));
+
+    // load stored data on localStorage or create new
     return JSON.parse(localStorage.getItem('todos-brow')) || [];
   });
 

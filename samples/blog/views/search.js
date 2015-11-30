@@ -5,12 +5,12 @@
     try {
       // (author)? ==> search by author
       if(!!author) {
-        this.posts = store.posts.filter(function(post) {
+        this.posts = store.filter(function(post) {
           return post.author == author;
         });
       // else search by text
       } else {
-        this.posts = store.posts.filter(function(post) {
+        this.posts = store.filter(function(post) {
           var match = post.text.match(new RegExp(data, 'gi'));
           return match && match.length > 0;
         });
@@ -28,7 +28,7 @@
     return false;
   };
 
-  Brow.route(/^\/search\/(\w+)\/?$/, search);
-  Brow.route(/^\/search\/(author)\/(\w+)\/?$/, search);
+  Brow.route(/^\/search\/(.+)\/?$/, search);
+  Brow.route(/^\/search\/(author)\/(.+)\/?$/, search);
 
 })(window.Brow);
