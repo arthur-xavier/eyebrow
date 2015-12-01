@@ -1,3 +1,4 @@
+/* globals Brow */
 (function(Brow) {
   'use strict';
 
@@ -14,7 +15,8 @@
     /**
      * Creates a new Todo and adds it to store
      * Called on keyup event of input#new-todo
-     * @param {Array} store
+     * @param  {Array} store
+     * @return {Array} new todos list with created item appended to the list head
      */
     this.create = this.create || function(store) {
       var $input = event.target;
@@ -38,7 +40,7 @@
      * Displays edit input field for todo
      * Called on dblclick event of label
      * @param {Array}  store
-     * @param {string} id
+     * @param {String} id
      */
     this.edit = this.edit || function(store, id) {
       var item = document.querySelector('[data-id="' + id + '"');
@@ -67,8 +69,9 @@
     /**
      * Updates the title of a todo
      * Called on focusout event of input.edit
-     * @param {Array}  store
-     * @param {string} id
+     * @param  {Array}  store
+     * @param  {String} id
+     * @return {Array}  new todos list with updated item
      */
     this.update = this.update || function(store, id) {
       var $input = event.target;
@@ -90,8 +93,9 @@
     /**
      * Removes a todo from the list
      * Called on click event of button.destroy
-     * @param {Array}  store
-     * @param {string} id
+     * @param  {Array}  store
+     * @param  {String} id
+     * @return {Array}  new todos list with specified todo removed
      */
     this.destroy = this.destroy || function(store, id) {
       return store.filter(function(todo) { return todo.id !== id; });
@@ -99,8 +103,9 @@
 
     /**
      * Marks a todo as completed
-     * @param {Array}  store
-     * @param {string} id
+     * @param  {Array}  store
+     * @param  {String} id
+     * @return {Array}  new todos list with specified todo marked/unmarked
      */
     this.mark = this.mark || function(store, id) {
       return store.map(function(todo) {
@@ -112,7 +117,8 @@
     /**
      * Marks all todos as completed
      * Called on change event of input#toggle-all
-     * @param {Array} store
+     * @param  {Array} store
+     * @return {Array} new todos list with all todos marked/unmarked
      */
     this.mark_all = this.mark_all || function(store) {
       return store.map(function(todo) {

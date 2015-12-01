@@ -54,6 +54,7 @@
       return true;
     }
 
+    // update view on store change
     if(newStore !== store) {
       store = newStore;
       Brow();

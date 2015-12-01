@@ -1,3 +1,4 @@
+/* globals Brow, TodosView, Handlebars */
 (function(Brow) {
   'use strict';
 
