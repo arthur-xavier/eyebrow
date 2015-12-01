@@ -6,7 +6,7 @@ Eyebrow or just Brow is a minimal single-page web library for front-end JavaScri
 Apart from the library itself, Eyebrow provides a set of common and good practices which are based on traditional HTML and JavaScript concepts such as event binding on the DOM.
 
 ## Installation
-To install Eyebrow you can do it either via NPM or Bower. 
+To install Eyebrow you can do it either download the `eyebrow.js` file from this repo or install it via NPM or Bower:
 ```
 npm install eyebrow
 ```

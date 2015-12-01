@@ -4,7 +4,7 @@
  * So minimalistic it calls for use of basic traditional 
  HTML and JavaScript functionalities
  */
-(function(window, module) {
+(function() {
   "use strict";
 
   var store = null;
@@ -26,38 +26,47 @@
    to execute a registered event. If no event is found as well, the string
    is appended to the window hash prefixed with '/'
    *
-   * @param {string|function} action
-   * @param {object}          data
+   * @param {String|Function} action
+   * @param {Object}          data
    */
   var Brow = function(action, data) {
+    var newStore;
+
     // reload view
     if(!action && !!view) {
-      store = view.apply(view, [store].concat(params)) || store;
+      newStore = view.apply(view, [store].concat(params)) || store;
     }
     // app initialisation
     else if(typeof action === 'function') {
-      store = action.call(Brow, null, data);
+      return store = action.call(Brow, null, data);
     }
     // view action
     else if(!!view && !!view[action]) {
-      store = view[action].call(view, store, data) || store;
+      newStore = view[action].call(view, store, data) || store;
     }
     // registered action
     else if(!!actions[action]) {
-      store = actions[action].call(view, store, data) || store;
+      newStore = actions[action].call(view, store, data) || store;
     }
     // registered route
     else {
       location.hash = "/" + action;
+      return true;
+    }
+
+    if(newStore !== store) {
+      store = newStore;
+      Brow();
+      return true;
     }
   };
 
   /**
    * Registers a new route handler
    *
-   * @param  {RegExp}         route
-   * @param  {function}       f
-   * @return {Array.<object>} registered route handlers
+   * @param  {RegExp}   route
+   * @param  {Function} f
+   * @return {[Object]} registered route handlers
    */
   Brow.route = function(route, f) {
     if(typeof route === 'string') {
@@ -70,9 +79,9 @@
   /**
    * Registers a new Eyebrow event handler
    *
-   * @param  {string}         name
-   * @param  {function}       f
-   * @return {Array.<object>} registered event handlers
+   * @param  {String}   name
+   * @param  {Function} f
+   * @return {[Object]} registered event handlers
    */
   Brow.on = function(name, f) {
     actions[name] = f;
@@ -82,9 +91,9 @@
   /**
    * Adds a new template rendering function to the templates collection
    *
-   * @param  {string}         name
-   * @param  {function}       f
-   * @return {Array.<object>} templates collection
+   * @param  {String}   name
+   * @param  {Function} f
+   * @return {[Object]} templates collection
    */
   Brow.template = function(name, f) {
     templates[name] = f;
@@ -94,7 +103,7 @@
   /**
    * Renders a template from the templates collection into the view element
    *
-   * @param {string} name
+   * @param {String} name
    */
   Brow.render = function(name, selector, data) {
     data = data || view;
@@ -110,18 +119,22 @@
       throw new Error('Eyebrow: can\'t render, invalid selector or DOM element provided');
     }
   };
-
   
   function loadViewFromHash() {
     event.preventDefault();
     // find route
     routes.forEach(function(r) {
+      var newStore;
       var match = r.regexp.exec(location.hash.slice(1));
       // (route found)? ==> call view
       if(match !== null) {
         view = r.view;
         params = match.slice(1);
-        store = view.apply(view, [store].concat(params)) || store;
+        newStore = view.apply(view, [store].concat(params)) || store;
+        if(newStore !== store) {
+          store = newStore;
+          Brow();
+        }
       }
     });
   }
@@ -129,7 +142,6 @@
   window.addEventListener('load', loadViewFromHash);
   window.addEventListener('hashchange', loadViewFromHash);
 
-
+  // export to globals
   window.Brow = Brow;
-
-})(window || {});
+})();

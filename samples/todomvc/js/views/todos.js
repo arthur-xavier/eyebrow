@@ -23,13 +23,15 @@
       if(event.which !== KEY_ENTER || !val) {
         return;
       }
+      
+      $input.value = "";
 
       store.unshift({
         id: utils.uuid(),
         title: val,
         completed: false
       });
-      $input.value = "";
+      return store.slice();
     };
 
     /**
@@ -81,6 +83,8 @@
       } else {
         $input.dataset.abort = false;
       }
+
+      return store.slice();
     };
 
     /**

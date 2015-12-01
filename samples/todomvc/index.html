@@ -16,10 +16,10 @@
     <section id="todoapp">
       <header id="header">
         <h1>todos</h1>
-        <input id="new-todo" onkeyup="Brow('create');Brow()" placeholder="What needs to be done?" autofocus>
+        <input id="new-todo" onkeyup="Brow('create')" placeholder="What needs to be done?" autofocus>
       </header>
       <section id="main">
-        <input id="toggle-all" type="checkbox" onchange="Brow('mark_all');Brow()">
+        <input id="toggle-all" type="checkbox" onchange="Brow('mark_all')">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list" role="main" class="todo-list"></ul>
       </section>
@@ -37,11 +37,11 @@
       {{#todos}}
       <li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
         <div class="view">
-          <input class="toggle" type="checkbox" onchange="Brow('mark', '{{id}}');Brow()" {{#if completed}}checked{{/if}}>
+          <input class="toggle" type="checkbox" onchange="Brow('mark', '{{id}}')" {{#if completed}}checked{{/if}}>
           <label ondblclick="Brow('edit', '{{id}}')">{{title}}</label>
-          <button class="destroy" onclick="Brow('destroy', '{{id}}');Brow()"></button>
+          <button class="destroy" onclick="Brow('destroy', '{{id}}')"></button>
         </div>
-        <input class="edit" onfocusout="Brow('update', '{{id}}');Brow()" onkeyup="Brow('keyup')" value="{{title}}" >
+        <input class="edit" onfocusout="Brow('update', '{{id}}')" onkeyup="Brow('keyup')" value="{{title}}" >
       </li>
       {{/todos}}
     </script>
@@ -58,7 +58,7 @@
           <a {{#eq filter 'completed'}}class="selected"{{/eq}} href="#/completed">Completed</a>
         </li>
       </ul>
-      {{#if completedTodos}}<button id="clear-completed" onclick="Brow('clear_completed');Brow()">Clear completed</button>{{/if}}
+      {{#if completedTodos}}<button id="clear-completed" onclick="Brow('clear_completed')">Clear completed</button>{{/if}}
     </script>
 
     <!-- scripts -->
