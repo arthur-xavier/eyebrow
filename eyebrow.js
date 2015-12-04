@@ -110,7 +110,9 @@
     data = data || view;
     if(!!selector) {
       if(typeof selector === 'string') {
-        document.querySelector(selector).innerHTML = templates[name](view);
+        Array.prototype.forEach.call(document.querySelectorAll(selector), function($el) {
+          $el.innerHTML = templates[name](view);
+        });
       } else if(selector.hasOwnProperty('innerHTML')) {
         selector.innerHTML = templates[name](data);
       } else {

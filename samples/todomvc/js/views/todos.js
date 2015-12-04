@@ -28,12 +28,13 @@
       
       $input.value = "";
 
+      store = store.slice();
       store.unshift({
         id: utils.uuid(),
         title: val,
         completed: false
       });
-      return store.slice();
+      return store;
     };
 
     /**
@@ -79,15 +80,16 @@
 
       if($input.dataset.abort === 'false') {
         if(val) {
-          store[utils.findTodoIndexById(store, id)].title = val;
+          return store.map(function(todo) {
+            if(todo.id === id) todo.title = val;
+            return todo;
+          });
         } else {
           this.destroy(store, id);
         }
       } else {
         $input.dataset.abort = false;
       }
-
-      return store.slice();
     };
 
     /**
