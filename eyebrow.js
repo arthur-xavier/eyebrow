@@ -1,10 +1,10 @@
 /**
- * Eyebrow is a minimalistic single-page web library for JavaScript
+ * Eyebrow is a minimalistic view layer library for JavaScript
  * So minimalistic it calls itself just Brow
- * So minimalistic it calls for use of basic traditional 
- HTML and JavaScript functionalities
  */
-(function() {
+var module = module || {};
+var window = window || {};
+(function(window, module) {
   "use strict";
 
   var store = null;
@@ -19,7 +19,7 @@
   /**
    * Calls for an action within the Eyebrow context
    * When called with no arguments, Brow reloads the current view
-   * When the first argument is a function, it resets the application, 
+   * When the first argument is a function, it resets the application,
    restoring the stored data
    * When called with a String as first argument, it calls such function
    within the view context and, if no function is found it then attempts
@@ -38,7 +38,7 @@
     }
     // app initialisation
     else if(typeof action === 'function') {
-      return store = action.call(Brow, null, data);
+      return (store = action.call(Brow, null, data));
     }
     // view action
     else if(!!view && !!view[action]) {
@@ -113,7 +113,7 @@
         Array.prototype.forEach.call(document.querySelectorAll(selector), function($el) {
           $el.innerHTML = templates[name](view);
         });
-      } else if(selector.hasOwnProperty('innerHTML')) {
+      } else if(!selector.hasOwnProperty('innerHTML')) {
         selector.innerHTML = templates[name](data);
       } else {
         throw new Error('Eyebrow: can\'t render, invalid selector or DOM element provided');
@@ -122,14 +122,14 @@
       throw new Error('Eyebrow: can\'t render, invalid selector or DOM element provided');
     }
   };
-  
+
   function loadViewFromHash() {
     event.preventDefault();
     // find route
     routes.forEach(function(r) {
       var newStore;
       var match = r.regexp.exec(location.hash.slice(1));
-      // (route found)? ==> call view
+      //* Route found? ==> Call view
       if(match !== null) {
         view = r.view;
         params = match.slice(1);
@@ -147,4 +147,5 @@
 
   // export to globals
   window.Brow = Brow;
-})();
+  module.exports = Brow;
+})(window, module);
