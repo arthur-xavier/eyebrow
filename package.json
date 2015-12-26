@@ -1,11 +1,14 @@
 {
   "name": "eyebrow",
-  "description": "Minimalistic JavaScript view layer library/architecture",
+  "description": "Minimalistic JavaScript application architecture",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com> (http://arthur-xavier.github.io/)",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "eyebrow.js",
   "scripts": {
-    "start": "./node_modules/.bin/http-server ./"
+    "commit": "./node_modules/.bin/git-cz",
+    "start": "./node_modules/.bin/http-server ./",
+    "test": "./node_modules/.bin/mocha -R spec ./test",
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test"
   },
   "keywords": [
     "minimalist",
@@ -23,6 +26,17 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "http-server": "^0.8.5"
+    "chai": "^3.4.1",
+    "commitizen": "^2.4.6",
+    "cz-conventional-changelog": "^1.1.5",
+    "http-server": "^0.8.5",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4",
+    "semantic-release": "^4.3.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
