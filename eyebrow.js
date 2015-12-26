@@ -29,25 +29,26 @@ var module = module || {};
      * @param {String|Function} action
      * @param {Object}          data
      */
-    var app = function(action, data) {
+    var app = function(action) {
       var newStore;
+      var data = Array.prototype.slice.call(arguments, 1);
 
       // reload view
       if(!action && !!view) {
-        newStore = view.apply(view, [store].concat(params)) || store;
-        //return view.apply(view, [store].concat(params));
+        //newStore = view.apply(view, [store].concat(params)) || store;
+        return view.apply(view, [store].concat(params));
       }
       // app initialisation
       else if(typeof action === 'function') {
-        return (store = action.call(app, null, data));
+        return (store = action.apply(app, [store].concat(data)));
       }
       // view action
       else if(!!view && !!view[action]) {
-        newStore = view[action].call(view, store, data) || store;
+        newStore = view[action].apply(view, [store].concat(data)) || store;
       }
       // registered action
       else if(!!app.actions[action]) {
-        newStore = app.actions[action].call(view, store, data) || store;
+        newStore = app.actions[action].apply(view, [store].concat(data)) || store;
       }
       // registered route
       else {
@@ -122,7 +123,7 @@ var module = module || {};
           Array.prototype.forEach.call(document.querySelectorAll(selector), function($el) {
             $el.innerHTML = rendered;
           });
-        } else if(selector.hasOwnProperty('innerHTML')) {
+        } else {
           selector.innerHTML = rendered;
         }
       }

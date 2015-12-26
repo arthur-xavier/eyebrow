@@ -148,9 +148,32 @@ describe("Eyebrow", function() {
         counter.should.equal(2);
       });
 
+      it("should call view functions with multiple arguments", function() {
+        var args = [];
+
+        App.route('/g', function() {
+          this.function = function(store, a, b) {
+            args = [a, b];
+          };
+        });
+        App._loadViewFromHash('/g');
+
+        App('function', 1, 2);
+        args.should.eql([1, 2]);
+      });
+
       it("should call actions", function(done) {
         App.on('done', function() { done(); });
         App('done');
+      });
+
+      it("should call actions with multiple arguments", function(done) {
+        App.on('action', function(store, a, b) {
+          a.should.equal(1);
+          b.should.equal(2);
+          done();
+        });
+        App('action', 1, 2);
       });
 
       it("should change location.hash", function() {
