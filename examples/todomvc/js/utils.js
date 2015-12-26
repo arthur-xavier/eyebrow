@@ -1,29 +1,21 @@
-(function(window) {
+/* globals Handlebars */
+Handlebars.registerHelper('eq', function (a, b, options) {
+  return a === b ? options.fn(this) : options.inverse(this);
+});
 
-  window.utils = window.utils || {};
+var utils = {};
+utils.uuid = function () {
+  /*jshint bitwise:false */
+  var i, random;
+  var uuid = '';
 
-  utils.uuid = function () {
-    /*jshint bitwise:false */
-    var i, random;
-    var uuid = '';
-
-    for (i = 0; i < 32; i++) {
-      random = Math.random() * 16 | 0;
-      if (i === 8 || i === 12 || i === 16 || i === 20) {
-        uuid += '-';
-      }
-      uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+  for (i = 0; i < 32; i++) {
+    random = Math.random() * 16 | 0;
+    if (i === 8 || i === 12 || i === 16 || i === 20) {
+      uuid += '-';
     }
+    uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+  }
 
-    return uuid;
-  };
-
-  utils.findTodoIndexById = function(array, id) {
-    for(var i = 0; i < array.length; i++) {
-      if(array[i].id == id) {
-        return i;
-      }
-    }
-  };
-
-})(window);
+  return uuid;
+};

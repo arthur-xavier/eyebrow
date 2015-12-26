@@ -1,21 +1,21 @@
 {
   "name": "eyebrow",
-  "description": "Minimalistic JavaScript single-page web library",
+  "description": "Minimalistic JavaScript application architecture",
   "main": "eyebrow.js",
   "authors": [
-    "Arthur Xavier <arthur.xavierx@gmail.com>"
+    "Arthur Xavier <arthur.xavierx@gmail.com> (https://arthur-xavier.github.io)"
   ],
   "license": "MIT",
   "keywords": [
-    "handlebars",
-    "mustache",
+    "minimalist",
     "template",
     "templating",
-    "promise",
+    "view",
+    "handlebars",
+    "react",
+    "redux",
     "angular",
-    "ember",
     "minimal",
-    "minimalist",
     "single-page",
     "frontend",
     "library"
@@ -27,6 +27,6 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "samples"
+    "examples"
   ]
 }

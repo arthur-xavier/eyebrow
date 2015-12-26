@@ -1,22 +1,15 @@
-/* globals Brow, TodosView, Handlebars */
-(function(Brow) {
-  'use strict';
+/* globals Eyebrow, TodosView */
+var TodoApp = Eyebrow();
 
-  Handlebars.registerHelper('eq', function (a, b, options) {
-    return a === b ? options.fn(this) : options.inverse(this);
-  });
+TodoApp(function() {
+  // setup routes
+  this.route(/^\/?$/, TodosView);
+  this.route(/^\/(\w+)?$/, TodosView);
 
-  Brow(function() {
-    // setup routes
-    Brow.route(/^\/?$/, TodosView);
-    Brow.route(/^\/(\w+)?$/, TodosView);
+  // setup templates
+  this.template('todos', Handlebars.compile(document.getElementById('todos-template').innerHTML));
+  this.template('footer', Handlebars.compile(document.getElementById('footer-template').innerHTML));
 
-    // setup templates
-    Brow.template('todos', Handlebars.compile(document.getElementById('todos-template').innerHTML));
-    Brow.template('footer', Handlebars.compile(document.getElementById('footer-template').innerHTML));
-
-    // load stored data on localStorage or create new
-    return JSON.parse(localStorage.getItem('todos-brow')) || [];
-  });
-
-})(window.Brow);
+  // load stored data on localStorage or create new
+  return JSON.parse(localStorage.getItem('todos-brow')) || [];
+});

@@ -1,6 +1,6 @@
 /* jshint esnext: true */
-/* globals Brow */
-(function(Brow) {
+/* globals TodoApp */
+(function() {
   "use strict";
 
   const KEY_ENTER = 13;
@@ -36,8 +36,8 @@
     document.getElementById('footer').style.display = (store.length > 0) ? 'inherit' : 'none';
 
     // render templates
-    Brow.render('todos', '#todo-list');
-    Brow.render('footer', '#footer');
+    TodoApp.render('todos', '#todo-list');
+    TodoApp.render('footer', '#footer');
 
     // store data
     localStorage.setItem('todos-brow', JSON.stringify(store));
@@ -112,4 +112,4 @@
   TodosView.clear_completed = (store) => store.filter((todo) => !todo.completed);
 
   window.TodosView = TodosView;
-})(Brow);
+})();
