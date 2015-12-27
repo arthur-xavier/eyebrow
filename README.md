@@ -1,6 +1,8 @@
 # eyebrow
 > Minimalistic JavaScript application architecture
 
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://travis-ci.org/arthur-xavier/eyebrow)
+
 Eyebrow or just Brow is a minimal library for front-end JavaScript application development inspired by React and Redux. It is a simple View library/architecture which bundles together simple templating, view and event management, routing and data/state store in a very minimalistic way.
 
 Apart from the library itself, Eyebrow provides a set of common and good practices which are based on traditional HTML and JavaScript concepts such as event binding on the DOM.
