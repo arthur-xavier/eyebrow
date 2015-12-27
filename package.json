@@ -2,27 +2,26 @@
   "name": "eyebrow",
   "description": "Minimalistic JavaScript application architecture",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com> (http://arthur-xavier.github.io/)",
-  "version": "0.1.0",
   "main": "eyebrow.js",
   "scripts": {
     "commit": "./node_modules/.bin/git-cz",
-    "start": "./node_modules/.bin/http-server ./",
+    "examples": "./node_modules/.bin/http-server ./",
     "test": "./node_modules/.bin/mocha -R spec ./test",
-    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test"
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test",
+    "check-coverage": "./node_modules/.bin/istanbul check-coverage --statements 90 --branches 85 --functions 90 --lines 90",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
+    "minimal",
     "minimalist",
-    "template",
-    "templating",
-    "view",
-    "handlebars",
     "react",
     "redux",
-    "angular",
-    "minimal",
-    "single-page",
+    "view",
     "frontend",
-    "library"
+    "library",
+    "single-page",
+    "templating",
+    "angular"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -37,6 +36,13 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "pre-commit": "npm run test:coverage && npm run check-coverage"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arthur-xavier/eyebrow.git"
   }
 }
