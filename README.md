@@ -1,7 +1,11 @@
 # eyebrow
 > Minimalistic JavaScript application architecture
 
+[![npm version](https://img.shields.io/npm/v/eyebrow.svg?style=flat-square)](https://www.npmjs.com/package/eyebrow)
+[![npm downloads](https://img.shields.io/npm/dm/eyebrow.svg?style=flat-square)](https://www.npmjs.com/package/eyebrow)
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://travis-ci.org/arthur-xavier/eyebrow)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 Eyebrow or just Brow is a minimal library for front-end JavaScript application development inspired by React and Redux. It is a simple View library/architecture which bundles together simple templating, view and event management, routing and data/state store in a very minimalistic way.
 
