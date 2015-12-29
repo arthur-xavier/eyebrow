@@ -35,7 +35,6 @@ var module = module || {};
 
       // reload view
       if(!action && !!view) {
-        //newStore = view.apply(view, [store].concat(params)) || store;
         return view.apply(view, [store].concat(params));
       }
       // app initialisation
