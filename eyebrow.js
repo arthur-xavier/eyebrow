@@ -47,7 +47,7 @@ var module = module || {};
       }
       // registered action
       else if(!!app.actions[action]) {
-        newStore = app.actions[action].apply(view, [store].concat(data)) || store;
+        newStore = app.actions[action].apply(app, [store].concat(data)) || store;
       }
       // registered route
       else {
