@@ -1,5 +1,6 @@
 {
   "name": "eyebrow",
+  "version": "1.1.0",
   "description": "Minimalistic JavaScript application architecture",
   "author": "Arthur Xavier <arthur.xavierx@gmail.com> (http://arthur-xavier.github.io/)",
   "main": "eyebrow.js",
