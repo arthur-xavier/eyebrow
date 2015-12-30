@@ -53,7 +53,7 @@ var module = module || {};
       }
       // registered route
       else {
-        location.hash = "/" + action;
+        location.hash = action;
         return true;
       }
 
