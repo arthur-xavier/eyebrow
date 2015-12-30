@@ -1,8 +1,8 @@
 /**
- * Eyebrow is a minimalistic application architecture library for JavaScript
- * So minimalistic it calls itself just Brow
- *
- * @author Arthur Xavier <arthur.xavierx@gmail.com> (https://arthur-xavier.github.io)
+ * @name Eyebrow
+ * @description Minimalistic application architecture library for JavaScript
+ * @author Arthur Xavier <arthur.xavierx@gmail.com>
+ * @copyright 2015, Arthur Xavier (https://arthur-xavier.github.io)
  */
 var window = window || {};
 var module = module || {};
