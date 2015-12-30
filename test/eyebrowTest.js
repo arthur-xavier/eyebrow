@@ -179,7 +179,7 @@ describe("Eyebrow", function() {
       it("should change location.hash", function() {
         global.location = { hash: "" };
         App('test').should.equal(true);
-        global.location.hash.should.equal('/test');
+        global.location.hash.should.equal('test');
       });
 
       it("should update view on store changes", function() {
