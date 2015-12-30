@@ -1,6 +1,8 @@
 /**
- * Eyebrow is a minimalistic view layer library for JavaScript
+ * Eyebrow is a minimalistic application architecture library for JavaScript
  * So minimalistic it calls itself just Brow
+ *
+ * @author Arthur Xavier <arthur.xavierx@gmail.com> (https://arthur-xavier.github.io)
  */
 var window = window || {};
 var module = module || {};

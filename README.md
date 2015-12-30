@@ -12,13 +12,13 @@ Eyebrow or just Brow is a minimal library for front-end JavaScript application d
 Apart from the library itself, Eyebrow provides a set of common and good practices which are based on traditional HTML and JavaScript concepts such as event binding on the DOM.
 
 ## Installation
-To install Eyebrow you can do it either download the `eyebrow.js` file from this repo or install it via NPM or Bower:
+To install Eyebrow you can do it either download the `eyebrow.js` file from this repo, from a CDN or install it via NPM:
 ```
 npm install eyebrow
 ```
 or
-```
-bower install eyebrow
+```html
+<script src="//npmcdn.com/eyebrow" type="text/javascript"></script>
 ```
 You can then import Eyebrow to your page using [webpack](https://webpack.github.io/), [Browserify](https://www.npmjs.com/package/browserify) or a `<script>` tag.
 
@@ -86,9 +86,3 @@ Routes can be registered with the function
 App.route : RegExp × Function → [(RegExp, Function)]
 ```
 which registers a regular expression as a route. The whole `location.hash` (without the # character) is matched against the given RegExp. And the given view function must be of type `State × (Data...) → State`.
-
-## TODO
-- [ ] Create a Chat example application
-- [ ] Develop an application oriented approach
-- [ ] Publish to Bower
-- [x] Publish to NPM
