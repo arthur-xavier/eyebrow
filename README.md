@@ -1,4 +1,4 @@
-# eyebrow
+# Eyebrow
 > Minimalistic JavaScript application architecture
 
 [![npm version](https://img.shields.io/npm/v/eyebrow.svg?style=flat-square)](https://www.npmjs.com/package/eyebrow)
