@@ -14,15 +14,15 @@
     <script type="text/javascript">
       var Counter = new Eyebrow();
 
-      var CounterView = (store, counter) => {
+      var CounterView = function(store, counter) {
         this.increment = (store) => Object.assign({}, store, { [counter]: (store[counter] || 0) + 1 });
         this.decrement = (store) => Object.assign({}, store, { [counter]: (store[counter] || 0) - 1 });
-        Counter.render('counter', '#counter', { name: counter, time: store[counter] || 0 });
+        Counter.render('counter', '#counter', { name: counter, value: store[counter] || 0 });
       };
 
       Counter(() => {
-        Counter.route(/\/(.*)$/, CounterView);
-        Counter.template('counter', (data) => `<h1>${data.name}</h1><h2>${data.time}</h2>`);
+        Counter.route(/(.*)$/, CounterView);
+        Counter.template('counter', (data) => `<h1>${data.name}</h1><h2>${data.value}</h2>`);
         return {};
       });
     </script>
