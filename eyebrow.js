@@ -52,9 +52,12 @@ var module = module || {};
         newStore = app.actions[action].apply(app, [store].concat(data)) || store;
       }
       // registered route
-      else {
+      else if(action) {
         location.hash = action;
         return true;
+      // no action
+      } else {
+        return;
       }
 
       // update view on store change
