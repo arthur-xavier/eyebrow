@@ -18,7 +18,7 @@ npm install eyebrow
 ```
 or
 ```html
-<script src="//npmcdn.com/eyebrow" type="text/javascript"></script>
+<script src="//unpkg.com/eyebrow" type="text/javascript"></script>
 ```
 You can then import Eyebrow to your page using [webpack](https://webpack.github.io/), [Browserify](https://www.npmjs.com/package/browserify) or a `<script>` tag.
 
